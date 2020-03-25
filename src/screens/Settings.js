@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Layout from '../components/Layout/';
 import {
   Paper,
@@ -15,8 +16,17 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.changeCup = this.changeCup.bind(this);
+    this.changeDailyTarget = this.changeDailyTarget.bind(this);
+  }
+  changeCup(e) {
+    this.props.change(e.target.value);
+  }
+  changeDailyTarget(e) {
+    this.props.changeDailyTarget(Number(e.target.value));
   }
   render() {
+    let cup = this.props.cup;
     return (
       <Layout title="Settings">
         <Paper
@@ -39,10 +49,10 @@ class Settings extends React.Component {
 
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Amount</InputLabel>
-              <Select value={20}>
-                <option value={10}>10ml</option>
-                <option value={20}>20ml</option>
-                <option value={30}>30ml</option>
+              <Select defaultValue={cup} onChange={this.changeCup}>
+                <option value={250}>250ml</option>
+                <option value={300}>300ml</option>
+                <option value={350}>350ml</option>
               </Select>
               <FormHelperText>mls per click</FormHelperText>
             </FormControl>
@@ -59,7 +69,12 @@ class Settings extends React.Component {
 
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Target</InputLabel>
-              <Input type="number" style={{ width: 100 }} />
+              <Input
+                type="number"
+                style={{ width: 100 }}
+                value={this.props.dailyTarget}
+                onChange={this.changeDailyTarget}
+              />
               <FormHelperText>Type mls</FormHelperText>
             </FormControl>
           </div>
@@ -141,4 +156,16 @@ class Settings extends React.Component {
   }
 }
 
-export default Settings;
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    change: val => dispatch({ type: 'CHANGE', cup: val }),
+    changeDailyTarget: val =>
+      dispatch({ type: 'SETDAILYTARGET', dailyTarget: val })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

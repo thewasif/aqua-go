@@ -6,7 +6,7 @@ function DailyStats(props) {
   return (
     <Container>
       <Div>
-        <Small>Remaining</Small>
+        <Small>Achieved</Small>
         <h5>{remaining}ml</h5>
       </Div>
       <Div>

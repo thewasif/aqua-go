@@ -6,7 +6,9 @@
   margin: 20px auto;
   width: 30%;
 }
-
+svg {
+  transition: fill 3s ease-out;
+}
 .circle-background,
 .circle-progress {
   fill: none;
@@ -17,6 +19,7 @@
 }
 
 .circle-progress {
+  transition: 0.2s ease-out;
   stroke: #1565c0;
   stroke-linecap: round;
   stroke-linejoin: round;
