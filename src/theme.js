@@ -13,6 +13,9 @@ const theme = createMuiTheme({
     },
     error: {
       main: '#ff4444'
+    },
+    background: {
+      default: 'rgba(0, 0, 0, 1)'
     }
   }
 });

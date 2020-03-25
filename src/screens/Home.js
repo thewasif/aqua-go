@@ -4,12 +4,13 @@ import {
   Paper,
   Button,
   Select,
+  ButtonGroup,
   FormControl,
   InputLabel,
-  FormHelperText,
-  Grid
+  FormHelperText
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import DailyStats from '../components/DailyStats';
+import { Add, HistoryRounded } from '@material-ui/icons';
 import CircularProgressBar from '../components/ProgressBar/CircularProgressBar';
 class Home extends React.Component {
   constructor(props) {
@@ -38,26 +39,22 @@ class Home extends React.Component {
               strokeWidth={20}
             />
           </div>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Paper>xs=12</Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper>xs=6</Paper>
-            </Grid>
-          </Grid>
 
-          <Button color="primary" size="large" style={{ marginTop: 10 }}>
-            <Add /> Add
-          </Button>
+          <DailyStats remaining={1200} target={3000} />
+
+          <ButtonGroup>
+            <Button color="primary" size="large" style={{ marginTop: 10 }}>
+              <Add /> Add
+            </Button>
+            <Button size="large" style={{ marginTop: 10 }}>
+              <HistoryRounded /> Revert
+            </Button>
+          </ButtonGroup>
         </Paper>
+
         <Paper
           elevation={4}
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
             marginTop: 12,
             padding: 20,
             width: '85%'
@@ -66,22 +63,20 @@ class Home extends React.Component {
           <div
             style={{
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
               alignItems: 'center'
             }}
           >
-            <div style={{ marginRight: 'auto' }}>
-              <h4>Amount of Water</h4>
-            </div>
+            <h4>Switch Cup</h4>
 
-            <FormControl>
+            <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Amount</InputLabel>
-              <Select>
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={30}>30</option>
+              <Select value={20}>
+                <option value={10}>10ml</option>
+                <option value={20}>20ml</option>
+                <option value={30}>30ml</option>
               </Select>
-              <FormHelperText>mls added per click</FormHelperText>
+              <FormHelperText>mls per click</FormHelperText>
             </FormControl>
           </div>
         </Paper>
