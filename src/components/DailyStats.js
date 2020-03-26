@@ -26,7 +26,6 @@ const Div = styled.div`
 `;
 
 const Small = styled.small`
-  color: #333;
   opacity: 0.7;
   position: relative;
   top: 14px;

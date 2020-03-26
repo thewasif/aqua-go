@@ -9,7 +9,8 @@ import {
   InputLabel,
   Switch,
   Button,
-  Input
+  Input,
+  Typography
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 class Settings extends React.Component {
@@ -18,12 +19,17 @@ class Settings extends React.Component {
     this.state = {};
     this.changeCup = this.changeCup.bind(this);
     this.changeDailyTarget = this.changeDailyTarget.bind(this);
+    this.resetApp = this.resetApp.bind(this);
   }
   changeCup(e) {
     this.props.change(e.target.value);
   }
   changeDailyTarget(e) {
     this.props.changeDailyTarget(Number(e.target.value));
+  }
+  resetApp() {
+    localStorage.clear();
+    window.location.reload();
   }
   render() {
     let cup = this.props.cup;
@@ -37,7 +43,9 @@ class Settings extends React.Component {
             width: '85%'
           }}
         >
-          <h1>Settings</h1>
+          <Typography variant="h5" style={{ textAlign: 'center' }}>
+            Settings
+          </Typography>
           <div
             style={{
               display: 'flex',
@@ -45,7 +53,7 @@ class Settings extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4>Cup Size</h4>
+            <Typography variant="subtitle">Cup Size</Typography>
 
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Amount</InputLabel>
@@ -65,8 +73,7 @@ class Settings extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4>Daily Target</h4>
-
+            <Typography variant="subtitle">Daily Target</Typography>
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Target</InputLabel>
               <Input
@@ -78,21 +85,6 @@ class Settings extends React.Component {
               <FormHelperText>Type mls</FormHelperText>
             </FormControl>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <h4>Weekly Target</h4>
-
-            <FormControl style={{ marginLeft: 'auto' }}>
-              <InputLabel>Target</InputLabel>
-              <Input type="number" style={{ width: 100 }} />
-              <FormHelperText>Type mls</FormHelperText>
-            </FormControl>
-          </div>
 
           <div
             style={{
@@ -101,8 +93,7 @@ class Settings extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4>Notifications</h4>
-
+            <Typography variant="subtitle">Notifications</Typography>
             <FormControl style={{ marginLeft: 'auto' }}>
               <Switch color="primary" />
             </FormControl>
@@ -115,8 +106,7 @@ class Settings extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4>Reminder Interval</h4>
-
+            <Typography variant="subtitle">Reminder Interval</Typography>
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Amount</InputLabel>
               <Select value={20}>
@@ -136,7 +126,9 @@ class Settings extends React.Component {
             width: '85%'
           }}
         >
-          <h2>Danger Zone</h2>
+          <Typography variant="h5" style={{ textAlign: 'center' }}>
+            Danger Zone
+          </Typography>
           <div
             style={{
               display: 'flex',
@@ -144,9 +136,13 @@ class Settings extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4 style={{ marginRight: 'auto' }}>Delete Data</h4>
-
-            <Button style={{ background: '#ff4444', color: 'white' }}>
+            <Typography style={{ marginRight: 'auto' }} variant="subtitle">
+              Delete Data
+            </Typography>
+            <Button
+              style={{ background: '#ff4444', color: 'white' }}
+              onClick={this.resetApp}
+            >
               <Delete /> Reset
             </Button>
           </div>

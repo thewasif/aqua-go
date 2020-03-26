@@ -24,9 +24,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    counter: state.counter
-  };
+  return state;
 };
 
 const mapDispatchToProps = dispatch => {

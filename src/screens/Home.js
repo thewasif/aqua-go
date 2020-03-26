@@ -8,11 +8,13 @@ import {
   ButtonGroup,
   FormControl,
   InputLabel,
-  FormHelperText
+  FormHelperText,
+  Typography
 } from '@material-ui/core';
 import DailyStats from '../components/DailyStats';
 import { Add, HistoryRounded } from '@material-ui/icons';
 import CircularProgressBar from '../components/ProgressBar/CircularProgressBar';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,8 @@ class Home extends React.Component {
     let dailyTarget = this.props.dailyTarget;
     let achievedTarget = this.props.achievedTarget;
     let percentage = Math.floor((achievedTarget / dailyTarget) * 100);
+    percentage =
+      Math.floor((achievedTarget / dailyTarget) * 100) > 100 ? 100 : percentage;
     return (
       <Layout title="Home">
         <Paper
@@ -106,8 +110,7 @@ class Home extends React.Component {
               alignItems: 'center'
             }}
           >
-            <h4>Switch Cup</h4>
-
+            <Typography variant="subtitle">Switch Cup</Typography>
             <FormControl style={{ marginLeft: 'auto' }}>
               <InputLabel>Amount</InputLabel>
               <Select defaultValue={cup} onChange={this.changeCup}>

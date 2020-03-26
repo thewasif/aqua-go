@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Layout from '../components/Layout/';
 import {
   Paper,
@@ -11,7 +12,11 @@ import {
   Typography
 } from '@material-ui/core';
 
-function Records() {
+function Records(props) {
+  const data = JSON.parse(localStorage.getItem('WEEKLY_STATS')) || [];
+  let dailyTarget = props.dailyTarget;
+  let achievedTarget = props.achievedTarget;
+  let percentage = Math.floor((achievedTarget / dailyTarget) * 100);
   return (
     <Layout title="Records">
       <Paper
@@ -26,31 +31,33 @@ function Records() {
           width: '85%'
         }}
       >
-        <h1>Records</h1>
+        <Typography variant="h5" style={{ textAlign: 'center' }}>
+          Records
+        </Typography>
         <TableContainer>
           <TableHead>
             <TableRow>
               <TableCell>Days</TableCell>
               <TableCell>Target</TableCell>
               <TableCell>Target Acheived</TableCell>
+              <TableCell>Success Rate</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>Monday</TableCell>
-              <TableCell>3000ml</TableCell>
-              <TableCell>2500ml</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Monday</TableCell>
-              <TableCell>3000ml</TableCell>
-              <TableCell>2500ml</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Monday</TableCell>
-              <TableCell>3000ml</TableCell>
-              <TableCell>2500ml</TableCell>
-            </TableRow>
+            {data.map(e => (
+              <React.Fragment>
+                <TableRow>
+                  <TableCell>
+                    <b>{e.day}</b>
+                  </TableCell>
+                  <TableCell>{e.dailyTarget}</TableCell>
+                  <TableCell>{e.achievedTarget}</TableCell>
+                  <TableCell>
+                    {Math.floor((e.achievedTarget / e.dailyTarget) * 100)}%
+                  </TableCell>
+                </TableRow>
+              </React.Fragment>
+            ))}
           </TableBody>
         </TableContainer>
       </Paper>
@@ -62,22 +69,15 @@ function Records() {
           width: '85%'
         }}
       >
-        <Typography variant="h4">Stats</Typography>
+        <Typography variant="h5" style={{ textAlign: 'center' }}>
+          Stats
+        </Typography>
         <div style={{ marginTop: 8, marginBottom: 8 }}>
           <Typography variant="subtitle2">Daily Target</Typography>
           <LinearProgress
             color="primary"
             valueBuffer={100}
-            value={20}
-            variant="buffer"
-          />
-        </div>
-        <div style={{ marginTop: 8, marginBottom: 8 }}>
-          <Typography variant="subtitle2">Weekly Target Target</Typography>
-          <LinearProgress
-            color="primary"
-            valueBuffer={100}
-            value={20}
+            value={percentage}
             variant="buffer"
           />
         </div>
@@ -85,5 +85,8 @@ function Records() {
     </Layout>
   );
 }
+const mapStateToProps = state => {
+  return state;
+};
 
-export default Records;
+export default connect(mapStateToProps)(Records);
