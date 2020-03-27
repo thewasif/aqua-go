@@ -6,6 +6,10 @@
 </div>
 <br>
 <p align="center">
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d131add-8843-48be-8bde-cc067ccc8ac1/deploy-status)](https://app.netlify.com/sites/aqua-go/deploys)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/muhammadwasif/aqua-go)
+
 </p>
 
 **Aqua Go** is an application that tracks your hydration and keep records for a week. You set targets and Aqua Go helps you track and keep a record of amount of water that you drunk, daily
