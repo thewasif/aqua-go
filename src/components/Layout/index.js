@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Typography,
   BottomNavigation,
-  BottomNavigationAction,
-  Switch
-} from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
-import { Home, BarChart, Settings } from '@material-ui/icons';
-import { Top, Bottom, Middle, App } from './style';
+  BottomNavigationAction
+} from "@material-ui/core";
+import { withRouter } from "react-router-dom";
+import { Home, BarChart, Settings } from "@material-ui/icons";
+import { Top, Bottom, Middle, App } from "./style";
 
 function Layout(props) {
-  let [screen, setScreen] = useState(window.location.pathname);
+  let [screen] = useState(window.location.pathname);
   const { title } = props;
   return (
     <App>
@@ -21,17 +19,6 @@ function Layout(props) {
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="h5">{title}</Typography>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-              style={{
-                marginLeft: 'auto'
-              }}
-            >
-              <Switch />
-            </IconButton>
           </Toolbar>
         </AppBar>
       </Top>

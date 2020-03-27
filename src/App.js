@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Counter from './components/Counter';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import Home from './screens/Home';
-import Records from './screens/Records';
-import Settings from './screens/Settings';
-import { ThemeProvider } from '@material-ui/core';
-import theme from './theme';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Home from "./screens/Home";
+import Records from "./screens/Records";
+import Settings from "./screens/Settings";
+import { ThemeProvider } from "@material-ui/core";
+import theme from "./theme";
 
 class App extends Component {
   render() {
@@ -29,8 +27,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    add: () => dispatch({ type: 'ADD' }),
-    subtract: () => dispatch({ type: 'SUBTRACT' })
+    add: () => dispatch({ type: "ADD" }),
+    subtract: () => dispatch({ type: "SUBTRACT" })
   };
 };
 

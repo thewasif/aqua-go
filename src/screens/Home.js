@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Layout from '../components/Layout/';
+import React from "react";
+import { connect } from "react-redux";
+import Layout from "../components/Layout/";
 import {
   Paper,
   Button,
@@ -10,10 +10,10 @@ import {
   InputLabel,
   FormHelperText,
   Typography
-} from '@material-ui/core';
-import DailyStats from '../components/DailyStats';
-import { Add, HistoryRounded } from '@material-ui/icons';
-import CircularProgressBar from '../components/ProgressBar/CircularProgressBar';
+} from "@material-ui/core";
+import DailyStats from "../components/DailyStats";
+import { Add, HistoryRounded } from "@material-ui/icons";
+import CircularProgressBar from "../components/ProgressBar/CircularProgressBar";
 
 class Home extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Home extends React.Component {
     let dailyTarget = this.props.dailyTarget;
     let cup = this.props.cup;
     if (achievedTarget >= dailyTarget) {
-      console.log('Target Achieved...!');
+      console.log("Target Achieved...!");
     } else {
       this.props.setAchievedTarget(achievedTarget + cup);
     }
@@ -40,7 +40,7 @@ class Home extends React.Component {
     let achievedTarget = this.props.achievedTarget;
     let cup = this.props.cup;
     if (achievedTarget <= 0) {
-      console.log('What....?');
+      console.log("What....?");
     } else {
       this.props.setAchievedTarget(achievedTarget - cup);
     }
@@ -57,13 +57,13 @@ class Home extends React.Component {
         <Paper
           elevation={4}
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
             marginTop: 12,
             padding: 20,
-            width: '85%'
+            width: "85%"
           }}
         >
           <div>
@@ -100,18 +100,18 @@ class Home extends React.Component {
           style={{
             marginTop: 12,
             padding: 20,
-            width: '85%'
+            width: "85%"
           }}
         >
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
             <Typography variant="subtitle">Switch Cup</Typography>
-            <FormControl style={{ marginLeft: 'auto' }}>
+            <FormControl style={{ marginLeft: "auto" }}>
               <InputLabel>Amount</InputLabel>
               <Select defaultValue={cup} onChange={this.changeCup}>
                 <option value={250}>250ml</option>
@@ -133,9 +133,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    change: val => dispatch({ type: 'CHANGE', cup: val }),
+    change: val => dispatch({ type: "CHANGE", cup: val }),
     setAchievedTarget: val =>
-      dispatch({ type: 'SETACHIEVEDTARGET', achievedTarget: val })
+      dispatch({ type: "SET_ACHIEVED_TARGET", achievedTarget: val })
   };
 };
 
