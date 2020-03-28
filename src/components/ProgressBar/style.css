@@ -20,7 +20,6 @@ svg {
 
 .circle-progress {
   transition: 0.2s ease-out;
-  stroke: #1565c0;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -29,4 +28,11 @@ svg {
   font-size: 3em;
   font-weight: bold;
   fill: #333;
+}
+
+.circle-text-2 {
+  font-size: small;
+  font-weight: bold;
+  fill: #333;
+  transition: 0.3s;
 }

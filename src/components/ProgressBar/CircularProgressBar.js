@@ -1,5 +1,6 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
+import { CheckCircle } from "@material-ui/icons";
 class CircularProgressBar extends React.Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,18 @@ class CircularProgressBar extends React.Component {
         height={this.props.sqSize}
         viewBox={viewBox}
       >
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: "rgba(9,9,121)", stopOpacity: 1 }}
+            />
+            <stop
+              offset="50%"
+              style={{ stopColor: "rgba(4,127,199)", stopOpacity: 1 }}
+            />
+          </linearGradient>
+        </defs>
         <circle
           className="circle-background"
           cx={this.props.sqSize / 2}
@@ -36,6 +49,7 @@ class CircularProgressBar extends React.Component {
           cx={this.props.sqSize / 2}
           cy={this.props.sqSize / 2}
           r={radius}
+          stroke={this.props.percentage == 100 ? "#00C851" : "url(#grad1)"}
           strokeWidth={`${this.props.strokeWidth}px`}
           // Start progress marker at 12 O'Clock
           transform={`rotate(-90 ${this.props.sqSize / 2} ${this.props.sqSize /
@@ -53,6 +67,18 @@ class CircularProgressBar extends React.Component {
           textAnchor="middle"
         >
           {`${this.props.percentage}%`}
+        </text>
+        <text
+          className="circle-text-2"
+          x="50%"
+          y="65%"
+          dy=".01em"
+          textAnchor="middle"
+          style={
+            this.props.percentage === 100 ? { opacity: 1 } : { opacity: 0 }
+          }
+        >
+          {`Target Achieved!`}
         </text>
       </svg>
     );
